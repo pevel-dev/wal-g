@@ -22,6 +22,10 @@ services:
     build:
       dockerfile: ./docker/golang/Dockerfile
       context: .
+      cache_from:
+        - type=gha,scope=image,mode=max
+      cache_to: 
+        - type=gha,scope=image,mode=max
     image: wal-g/golang
     container_name: wal-g_golang
 
@@ -29,6 +33,10 @@ services:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile
       context: .
+      cache_from:
+        - type=gha,scope=image,mode=max
+      cache_to: 
+        - type=gha,scope=image,mode=max
     image: wal-g/ubuntu:18.04
     container_name: wal-g_ubuntu
 
@@ -36,6 +44,10 @@ services:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile_20_04
       context: .
+      cache_from:
+        - type=gha,scope=image,mode=max
+      cache_to: 
+        - type=gha,scope=image,mode=max
     image: wal-g/ubuntu:20.04
     container_name: wal-g_ubuntu_20_04
 
