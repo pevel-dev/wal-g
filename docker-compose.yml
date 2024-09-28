@@ -253,7 +253,8 @@ services:
       dockerfile: docker/pg_tests/Dockerfile_prefix
       context: .
       additional_contexts:
-        ubuntu: docker-image://wal-g/ubuntu:18.04
+        golang: docker-image://wal-g/golang:latest
+        pg: docker-image://wal-g/pg:latest
       cache_from:
         - type=gha,scope=image,mode=max
       cache_to: 
