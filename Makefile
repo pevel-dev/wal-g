@@ -7,6 +7,7 @@ MAIN_FDB_PATH := main/fdb
 MAIN_GP_PATH := main/gp
 MAIN_ETCD_PATH := main/etcd
 DOCKER_COMMON := golang ubuntu ubuntu_20_04 s3
+DOCKER_CACHE_ARGS := --cache-to type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image --cache_from type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
 CMD_FILES = $(wildcard cmd/**/*.go)
 PKG_FILES = $(wildcard internal/*.go internal/**/*.go internal/**/**/*.go internal/**/**/**/*.go)
 TEST_FILES = $(wildcard test/*.go testtools/*.go)
@@ -54,9 +55,9 @@ pg_build_image:
 	# There are dependencies between container images.
 	# Running in one command leads to using outdated images and fails on clean system.
 	# It can not be fixed with depends_on in compose file. https://github.com/docker/compose/issues/6332
-	docker compose build $(DOCKER_COMMON)
-	docker compose build pg
-	docker compose build pg_build_docker_prefix
+	docker compose build $(DOCKER_COMMON) $(DOCKER_CACHE_ARGS)
+	docker compose build pg $(DOCKER_CACHE_ARGS)
+	docker compose build pg_build_docker_prefix $(DOCKER_CACHE_ARGS)
 
 pg_save_image: install_and_build_pg pg_build_image
 	mkdir -p ${CACHE_FOLDER}
