@@ -25,6 +25,9 @@ jobs:
     name: Build images
     runs-on: ubuntu-20.04
     steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       #  use cache to pass docker images to the test jobs
       - name: Docker images caching
         id: cache-images
@@ -60,6 +63,8 @@ jobs:
            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
            dep ensure
           fi
+      - name: Expose GitHub Runtime
+        uses: crazy-max/ghaction-github-runtime@v3
 
       # build images
       - name: Build images
