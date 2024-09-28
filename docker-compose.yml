@@ -23,9 +23,9 @@ services:
       dockerfile: ./docker/golang/Dockerfile
       context: .
       cache_from:
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
       cache_to: 
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
     image: wal-g/golang
     container_name: wal-g_golang
 
@@ -34,9 +34,9 @@ services:
       dockerfile: ./docker/ubuntu/Dockerfile
       context: .
       cache_from:
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
       cache_to: 
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
 
     image: wal-g/ubuntu:18.04
     container_name: wal-g_ubuntu
@@ -46,9 +46,9 @@ services:
       dockerfile: ./docker/ubuntu/Dockerfile_20_04
       context: .
       cache_from:
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
       cache_to: 
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
     image: wal-g/ubuntu:20.04
     container_name: wal-g_ubuntu_20_04
 
@@ -241,9 +241,9 @@ services:
       dockerfile: docker/pg/Dockerfile
       context: .
       cache_from:
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
       cache_to: 
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
     image: wal-g/pg
     container_name: wal-g_pg
 
@@ -252,9 +252,9 @@ services:
       dockerfile: docker/pg_tests/Dockerfile_prefix
       context: .
       cache_from:
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
       cache_to: 
-        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN}
     image: wal-g/docker_prefix
     container_name: wal-g_pg_docker_prefix
     <<: *s3_common_depends
