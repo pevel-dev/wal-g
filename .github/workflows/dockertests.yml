@@ -64,8 +64,8 @@ jobs:
            dep ensure
           fi
 
-      # - name: Expose GitHub Runtime
-      #   uses: crazy-max/ghaction-github-runtime@v3
+      - name: Expose GitHub Runtime
+        uses: crazy-max/ghaction-github-runtime@v3
 
       # build images
       - name: Build images
