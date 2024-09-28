@@ -239,6 +239,8 @@ services:
     build:
       dockerfile: docker/pg/Dockerfile
       context: .
+      additional_contexts:
+        ubuntu: docker-image://wal-g/ubuntu:18.04
       cache_from:
         - type=gha,scope=image,mode=max
       cache_to: 
@@ -250,6 +252,8 @@ services:
     build:
       dockerfile: docker/pg_tests/Dockerfile_prefix
       context: .
+      additional_contexts:
+        ubuntu: docker-image://wal-g/ubuntu:18.04
       cache_from:
         - type=gha,scope=image,mode=max
       cache_to: 
