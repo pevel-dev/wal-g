@@ -228,9 +228,9 @@ services:
       dockerfile: docker/pg/Dockerfile
       context: .
       cache_from:
-        - type=gha,scope=image
+        - type=gha,scope=image,mode=max
       cache_to: 
-        - type=gha,scope=image
+        - type=gha,scope=image,mode=max
     image: wal-g/pg
     container_name: wal-g_pg
 
@@ -239,9 +239,9 @@ services:
       dockerfile: docker/pg_tests/Dockerfile_prefix
       context: .
       cache_from:
-        - type=gha,scope=image
+        - type=gha,scope=image,mode=max
       cache_to: 
-        - type=gha,scope=image
+        - type=gha,scope=image,mode=max
     image: wal-g/docker_prefix
     container_name: wal-g_pg_docker_prefix
     <<: *s3_common_depends
