@@ -240,7 +240,7 @@ services:
       dockerfile: docker/pg/Dockerfile
       context: .
       additional_contexts:
-        ubuntu: docker-image://wal-g/ubuntu:18.04
+        ubuntu: ./docker/ubuntu/Dockerfile
       cache_from:
         - type=gha,scope=image,mode=max
       cache_to: 
