@@ -227,6 +227,10 @@ services:
     build:
       dockerfile: docker/pg/Dockerfile
       context: .
+      cache-from:
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
+      cache-to: 
+        - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
     image: wal-g/pg
     container_name: wal-g_pg
 
