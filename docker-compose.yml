@@ -240,9 +240,9 @@ services:
     build:
       dockerfile: docker/pg/Dockerfile
       context: .
-      cache-from:
+      cache_from:
         - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
-      cache-to: 
+      cache_to: 
         - type=gha,url=${ACTIONS_CACHE_URL},token=${ACTIONS_RUNTIME_TOKEN},scope=image
     image: wal-g/pg
     container_name: wal-g_pg
