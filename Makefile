@@ -7,7 +7,7 @@ MAIN_FDB_PATH := main/fdb
 MAIN_GP_PATH := main/gp
 MAIN_ETCD_PATH := main/etcd
 DOCKER_COMMON := golang ubuntu ubuntu_20_04 s3
-DOCKER_CACHE := --cache-from type=gha,scope=image,mode=max --chache-to type=gha,scope=image,mode=max
+DOCKER_CACHE := --cache-from type=gha,scope=image,mode=max --cache-to type=gha,scope=image,mode=max
 CMD_FILES = $(wildcard cmd/**/*.go)
 PKG_FILES = $(wildcard internal/*.go internal/**/*.go internal/**/**/*.go internal/**/**/**/*.go)
 TEST_FILES = $(wildcard test/*.go testtools/*.go)
