@@ -239,8 +239,6 @@ services:
     build:
       dockerfile: docker/pg/Dockerfile
       context: .
-      additional_contexts:
-        ubuntu: ./docker/ubuntu/Dockerfile
       cache_from:
         - type=gha,scope=image,mode=max
       cache_to: 
@@ -253,13 +251,11 @@ services:
     build:
       dockerfile: docker/pg_tests/Dockerfile_prefix
       context: .
-      additional_contexts:
-        golang: docker-image://wal-g/golang:latest
-        pg: docker-image://wal-g/pg:latest
       cache_from:
         - type=gha,scope=image,mode=max
       cache_to: 
         - type=gha,scope=image,mode=max
+      pull: false
     image: wal-g/docker_prefix
     container_name: wal-g_pg_docker_prefix
     <<: *s3_common_depends
