@@ -55,6 +55,11 @@ pg_build_image:
 	# Running in one command leads to using outdated images and fails on clean system.
 	# It can not be fixed with depends_on in compose file. https://github.com/docker/compose/issues/6332
 	docker compose build $(DOCKER_COMMON)
+	docker pull wal-g/golang wal-g/pg wal-g/ubuntu:18.04
+	docker tag wal-g/golang wal-g/golang:local
+	docker tag wal-g/pg wal-g/pg:local
+	docker tag wal-g/ubuntu:18.04 wal-g/ubuntu:local
+
 	docker compose build pg
 	docker compose build pg_build_docker_prefix
 
