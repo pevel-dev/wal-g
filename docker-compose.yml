@@ -247,6 +247,7 @@ services:
         - type=gha,scope=image,mode=max
     image: wal-g/pg
     container_name: wal-g_pg
+    pull: false
 
   pg_build_docker_prefix:
     build:
