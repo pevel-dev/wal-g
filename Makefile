@@ -7,6 +7,7 @@ MAIN_FDB_PATH := main/fdb
 MAIN_GP_PATH := main/gp
 MAIN_ETCD_PATH := main/etcd
 DOCKER_COMMON := golang ubuntu ubuntu_20_04 s3
+DOCKER_CACHE := --cache_from type=gha,scope=image,mode=max --chache_to type=gha,scope=image,mode=max
 CMD_FILES = $(wildcard cmd/**/*.go)
 PKG_FILES = $(wildcard internal/*.go internal/**/*.go internal/**/**/*.go internal/**/**/**/*.go)
 TEST_FILES = $(wildcard test/*.go testtools/*.go)
@@ -54,8 +55,11 @@ pg_build_image:
 	# There are dependencies between container images.
 	# Running in one command leads to using outdated images and fails on clean system.
 	# It can not be fixed with depends_on in compose file. https://github.com/docker/compose/issues/6332
-	docker buildx create --use --driver-opt default-load=true
-	docker compose build $(DOCKER_COMMON)
+	docker buildx create --driver-opt default-load=true --name builder
+	docker buildx build --load -t wal-g/golang --builder builder $(DOCKER_CACHE) ./docker/golang/Dockerfile
+	docker buildx build --load -t wal-g/ubuntu:18.04 --builder builder $(DOCKER_CACHE) ./docker/ubuntu/Dockerfile
+	docker buildx build --load -t wal-g/ubuntu:20.04 --builder builder $(DOCKER_CACHE) ./docker/ubuntu/Dockerfile_20_04
+	docker compose build s3
 	docker compose build pg
 	docker compose build pg_build_docker_prefix
 
