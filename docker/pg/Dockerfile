@@ -1,6 +1,20 @@
-FROM wal-g/ubuntu:18.04
+FROM ubuntu:18.04 as ubuntu
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV TERM xterm-256color
+
+RUN apt-get update && \
+    apt-get install --yes --no-install-recommends --no-install-suggests \
+    git ca-certificates \
+    htop \
+    nano \
+    liblzo2-2 \
+    libbrotli1 && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV PGDATA /var/lib/postgresql/10/main  
+
+FROM ubuntu
 
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends --no-install-suggests \
