@@ -54,7 +54,7 @@ pg_build_image:
 	# There are dependencies between container images.
 	# Running in one command leads to using outdated images and fails on clean system.
 	# It can not be fixed with depends_on in compose file. https://github.com/docker/compose/issues/6332
-	docker buildx use default
+	docker buildx create --use --driver-opt default-load=true
 	docker compose build $(DOCKER_COMMON)
 	docker compose build pg
 	docker compose build pg_build_docker_prefix
