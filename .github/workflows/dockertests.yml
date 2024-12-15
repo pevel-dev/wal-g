@@ -68,7 +68,8 @@ jobs:
 
       - name: Expose GitHub Runtime
         uses: crazy-max/ghaction-github-runtime@v3
-
+      - name: user docker buildx
+        run: export DOCKER_BUILDKIT=1
       # build images
       - name: Build images
         if: steps.cache-images.outputs.cache-hit != 'true'
