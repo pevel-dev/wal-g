@@ -244,11 +244,12 @@ services:
       dockerfile: docker/pg/Dockerfile
       context: .
       cache_from: 
+        - wal-g/ubuntu:18.04
         - type=gha
       cache_to: 
         - type=gha,mode=max
       additional_contexts:
-        app: docker-image://wal-g/ubuntu:18.04
+        app: docker-image://
     image: wal-g/pg
     container_name: wal-g_pg
 
@@ -258,6 +259,7 @@ services:
       dockerfile: docker/pg_tests/Dockerfile_prefix
       context: .
       cache_from: 
+        - wal-g/ubuntu:18.04
         - type=gha
       cache_to: 
         - type=gha,mode=max
