@@ -1,4 +1,4 @@
-FROM wal-g/ubuntu_18_04
+FROM wal-g/ubuntu:18.04
 
 ENV WALG_REDIS_DATA_FOLDER=/var/lib/redis
 ENV REDIS_VERSION=7.2.5

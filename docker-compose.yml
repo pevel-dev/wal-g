@@ -29,7 +29,7 @@ services:
     image: wal-g/golang
     container_name: wal-g_golang
 
-  ubuntu_18_04:
+  ubuntu:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile
       context: .
@@ -37,6 +37,7 @@ services:
         - type=gha
       cache_to: 
         - type=gha,mode=max
+    image: wal-g/ubuntu:18.04
     container_name: wal-g_ubuntu
 
   ubuntu_20_04:
