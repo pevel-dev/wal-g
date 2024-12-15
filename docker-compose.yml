@@ -29,7 +29,7 @@ services:
     image: wal-g/golang
     container_name: wal-g_golang
 
-  ubuntu:
+  ubuntu_18_04:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile
       context: .

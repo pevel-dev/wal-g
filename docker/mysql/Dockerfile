@@ -1,4 +1,4 @@
-FROM wal-g/ubuntu:18.04
+FROM wal-g/ubuntu_18_04
 
 ENV MYSQLDATA /var/lib/mysql
 
