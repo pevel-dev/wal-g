@@ -229,6 +229,8 @@ services:
       context: .
     image: wal-g/pg
     container_name: wal-g_pg
+    cache-from: docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
+    cache-to: docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
 
   pg_build_docker_prefix:
     build:
