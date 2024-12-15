@@ -248,7 +248,7 @@ services:
       cache_to: 
         - type=gha,mode=max
       additional_contexts:
-        app: wal-g/ubuntu:18.04
+        app: docker-image://wal-g/ubuntu:18.04
     image: wal-g/pg
     container_name: wal-g_pg
 
