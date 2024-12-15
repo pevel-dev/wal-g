@@ -29,11 +29,8 @@ services:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile
       context: .
-      cache-from: 
-        - docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
-      cache-to: 
-        - docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
-    image: wal-g/ubuntu:18.04
+      cache-from: type=gha
+      cache-to: type=gha,mode=max
     container_name: wal-g_ubuntu
 
   ubuntu_20_04:
