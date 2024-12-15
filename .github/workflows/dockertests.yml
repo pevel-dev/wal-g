@@ -60,7 +60,10 @@ jobs:
            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
            dep ensure
           fi
-          
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
