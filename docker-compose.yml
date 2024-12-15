@@ -29,6 +29,10 @@ services:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile
       context: .
+      cache-from: 
+        - docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
+      cache-to: 
+        - docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
     image: wal-g/ubuntu:18.04
     container_name: wal-g_ubuntu
 
@@ -227,10 +231,6 @@ services:
     build:
       dockerfile: docker/pg/Dockerfile
       context: .
-      cache-from: 
-      - docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
-    cache-to: 
-      - docker.pkg.github.com/$GITHUB_REPOSITORY/pg-cache
     image: wal-g/pg
     container_name: wal-g_pg
 

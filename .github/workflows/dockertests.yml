@@ -66,6 +66,9 @@ jobs:
       - name: Login docker github registry for cache
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 
+      - name: Expose GitHub Runtime
+        uses: crazy-max/ghaction-github-runtime@v3
+
       # build images
       - name: Build images
         if: steps.cache-images.outputs.cache-hit != 'true'
