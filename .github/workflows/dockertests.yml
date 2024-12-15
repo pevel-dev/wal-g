@@ -61,7 +61,18 @@ jobs:
            dep ensure
           fi
 
-      # build images
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: network=host
+
+      - name: Login docker github registry for cache
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+
+
       - name: Build images
         if: steps.cache-images.outputs.cache-hit != 'true'
         run: make pg_save_image

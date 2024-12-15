@@ -22,6 +22,10 @@ services:
     build:
       dockerfile: ./docker/golang/Dockerfile
       context: .
+      cache_from: 
+        - type=gha
+      cache_to: 
+        - type=gha,mode=max
     image: wal-g/golang
     container_name: wal-g_golang
 
@@ -29,6 +33,11 @@ services:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile
       context: .
+      cache_from: 
+        - type=gha
+      cache_to: 
+        - type=gha,mode=max
+        - localhost:5000/wal-g/ubuntu:18.04
     image: wal-g/ubuntu:18.04
     container_name: wal-g_ubuntu
 
@@ -36,6 +45,11 @@ services:
     build:
       dockerfile: ./docker/ubuntu/Dockerfile_20_04
       context: .
+      cache_from: 
+        - type=gha
+      cache_to: 
+        - type=gha,mode=max
+        - localhost:5000/wal-g/ubuntu:20.04
     image: wal-g/ubuntu:20.04
     container_name: wal-g_ubuntu_20_04
 
@@ -219,6 +233,10 @@ services:
     build:
       dockerfile: docker/ssh/Dockerfile
       context: .
+      cache_from: 
+        - type=gha
+      cache_to: 
+        - type=gha,mode=max
     container_name: wal-g_ssh
     ports:
       - "6942:6942"
@@ -227,13 +245,23 @@ services:
     build:
       dockerfile: docker/pg/Dockerfile
       context: .
+      cache_from: 
+        - type=gha
+        - docker-image://localhost:5000/wal-g/ubuntu:18.04
+      cache_to: 
+        - type=gha,mode=max
     image: wal-g/pg
     container_name: wal-g_pg
+
 
   pg_build_docker_prefix:
     build:
       dockerfile: docker/pg_tests/Dockerfile_prefix
       context: .
+      cache_from: 
+        - type=gha
+      cache_to: 
+        - type=gha,mode=max
     image: wal-g/docker_prefix
     container_name: wal-g_pg_docker_prefix
     <<: *s3_common_depends
